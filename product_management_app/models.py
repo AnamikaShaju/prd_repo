@@ -31,3 +31,6 @@ class Product(models.Model):
     product_name = models.CharField(max_length=100)
     price = models.IntegerField()
     stock_quantity = models.IntegerField()
+    image_url = models.URLField(max_length=500, blank=True, null=True)
+
+

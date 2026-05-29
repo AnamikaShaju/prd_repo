@@ -8,7 +8,7 @@ from product_management_app.models import Product, Customer, seller, Login_data
 class Productform(forms.ModelForm):
     class Meta:
         model = Product
-        fields =['product_name','price','stock_quantity']
+        fields =['product_name','price','stock_quantity','image_url']
 
 
 

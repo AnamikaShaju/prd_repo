@@ -9,23 +9,28 @@ from product_management_app.models import Product, seller
 # Create your views here.
 def product_add(request):
     user = request.user
-    seller_data = seller.objects.filter(id=user.id)
+    print(user.id)
+    seller_data = seller.objects.get(user=user.id)
     print(seller_data)
-    print(user)
+
     form = Productform()
 
     if request.method == 'POST':
         form_data =Productform(request.POST)
         if form_data.is_valid():
-            form_data.save()
-            return redirect("product_view")
+            obj= form_data.save(commit=False)
+            obj.user=seller_data
+            obj.save()
     return render(request,'product_add.html',{'form':form})
 
 def helloworld(request):
     return render(request,'hello.html')
 
 def product_view(request):
-    data  = Product.objects.all()
+    user1 = request.user
+    seller_data = seller.objects.get(user=user1)
+    data = Product.objects.filter(user=seller_data)
+    print(data)
 
     return render(request,'product_view.html',{'data':data})
 def delete_data(request,id):
@@ -39,7 +44,7 @@ def update_data(request,id):
         form_data= Productform(request.POST,request.FILES,instance=obj)
         if form_data.is_valid():
             form_data.save()
-            return redirect("Product_view")
+            return redirect("product_view")
     return render(request,'product_update.html',{'form':form})
 
 
@@ -91,7 +96,7 @@ def login_view(request):
                 return redirect("adminbase")
             if user.is_customer:
                 print("Customer")
-                return redirect("customerbase")
+                return redirect("customerproductview")
             elif user.is_seller:
                print("Seller")
                return redirect("sellerbase")
@@ -111,3 +116,18 @@ def customer_base(request):
 
 def seller_base(request):
     return render(request, 'seller_base.html')
+
+
+def seller_productview(request):
+    user1 = request.user
+    seller_data = seller.objects.get(user=user1)
+    data = Product.objects.filter(user=seller_data)
+    print(data)
+    return render(request, 'seller_productview.html')
+
+
+
+def customer_productview(request):
+    data = Product.objects.all()
+    print(data)
+    return render(request,'customer_productview.html',{'data':data})

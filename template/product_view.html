@@ -71,7 +71,7 @@
     <div class="sidebar">
         <h4>My App</h4>
 
-        <a href="{% url 'product_add' %}">➕ Product Add</a>
+        <a href="{% url 'productadd' %}">➕ Product Add</a>
         <a href="{%url 'product_view'%}">📋 Product View</a>
 <!--        <a href="#">➕ Add Ia>-->
 <!--        <a href="#">⚙️ Settings</a>tem</-->
@@ -117,6 +117,8 @@
       <th scope="col">Name</th>
       <th scope="col">Stock</th>
       <th scope="col">Price</th>
+        <th scope="col">image</th>
+
         <th scope="col">Delete</th>
         <th scope="col">Update</th>
     </tr>
@@ -128,6 +130,8 @@
       <td>{{product.product_name}}</td>
       <td>{{product.price}}</td>
       <td>{{product.stock_quantity}}</td>
+        <td><img src ="{{product.image_url }}" width = 300px alt="{{ product.name }}" class="product-main-img" id="mainimage"></td>
+
         <td><a href="{%url 'delete_data' product.id%}" class="btn btn-danger" > delete </a></td>
         <td><a href="{%url 'update_data' product.id%}" class="btn btn-outline-success" > update </a></td>
     </tr>

@@ -1,0 +1,39 @@
+{% extends 'customer_base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+
+        {% for product in data %}
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100" style="width: 100%;">
+
+                <img src="{{ product.image_url }}"
+                     class="card-img-top"
+                     alt="{{ product.pdt_name }}"
+                     style="height: 250px; object-fit: cover;">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.product_name }}</h5>
+
+                    <p class="card-text">
+                        Stock: {{ product.stock_quantity }}
+                    </p>
+
+                    <p class="card-text">
+                        Price: ₹{{ product.price }}
+                    </p>
+                    <button type="button" class="btn btn-warning">Buy now</button>
+                </div>
+
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
