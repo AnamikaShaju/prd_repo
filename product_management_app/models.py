@@ -9,6 +9,7 @@ from django.db import models
 class Login_data(AbstractUser):
     is_seller = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
 
 class Customer(models.Model):

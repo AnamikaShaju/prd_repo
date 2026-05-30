@@ -1,9 +1,10 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 
 from product_management_app.form import loginRegister, Customerform, Productform, sellerform
-from product_management_app.models import Product, seller
+from product_management_app.models import Product, seller, Customer
 
 
 # Create your views here.
@@ -81,7 +82,7 @@ def seller_register(request):
     return render(request,"seller_register.html",{'form1':form1,'form2':form2})
 
 
-
+@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('uname')
@@ -100,6 +101,7 @@ def login_view(request):
             elif user.is_seller:
                print("Seller")
                return redirect("sellerbase")
+
         else:
             messages.info(request,"Invalid Credentials")
     return render(request,"login.html")
@@ -131,3 +133,23 @@ def customer_productview(request):
     data = Product.objects.all()
     print(data)
     return render(request,'customer_productview.html',{'data':data})
+
+
+def customer_all(request):
+    c = Customer.objects.all()
+    print(c)
+    return render(request, 'customer_all.html', {'c': c})
+
+
+def seller_all(request):
+    s = seller.objects.all()
+
+    print(s)
+    return render(request, 'seller_all.html', {'s': s})
+
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("loginview")

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_6)9ltj^=@35l&qblj=&0blluty0$@5$s^5&-=a@t=v2an#iy2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -120,4 +120,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 AUTH_USER_MODEL = 'product_management_app.Login_data'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app','https://flyer-venus-easiest.ngrok-free.dev/'
+]

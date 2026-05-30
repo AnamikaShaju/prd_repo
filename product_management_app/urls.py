@@ -15,7 +15,10 @@ urlpatterns = [
     path('customerbase',views.customer_base,name="customerbase"),
     path('sellerbase',views.seller_base,name="sellerbase"),
     path('sellerproductview',views.seller_productview,name="sellerproductview"),
-    path('customerproductview',views.customer_productview,name="customerproductview")
+    path('customerproductview',views.customer_productview,name="customerproductview"),
+    path('custadmin',views.customer_all,name="custadmin"),
+    path('selleradmin',views.seller_all,name="selleradmin"),
+    path('logoutview',views.logout_view,name="logoutview")
 
 
 ]

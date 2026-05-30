@@ -89,7 +89,7 @@
             <div>
                 {% if request.user.is_authenticated %}
                     <span class="me-3">👤 {{ request.user }}</span>
-                    <a href="{% url 'logoutview' %}" class="btn btn-sm btn-outline-danger">Logout</a>
+                    <a href="#" class="btn btn-sm btn-outline-danger">Logout</a>
                 {% else %}
                     <a href="#" class="btn btn-sm btn-outline-primary">Login</a>
                 {% endif %}
@@ -102,6 +102,45 @@
 
 
 
+          <!-- Child templates inject content here -->
+
+
+
+
+
+
+
+            <table class="table table-success table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+        <th scope="col">email</th>
+        <th scope="col">phone</th>
+        <th scope="col">address</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+  {%for product in c %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{product.name}}</td>
+      <td>{{product.email}}</td>
+      <td>{{product.phone_number}}</td>
+        <td>{{product.address}}</td>
+        
+
+<!--        <td><a href="{%url 'delete_data' product.id%}" class="btn btn-danger" > delete </a></td>-->
+<!--        <td><a href="{%url 'update_data' product.id%}" class="btn btn-outline-success" > update </a></td>-->
+    </tr>
+  {%endfor%}
+
+
+  </tbody>
+</table>
 
            {% endblock %}
         </div>
